@@ -28,26 +28,26 @@ jobs:
           node-version: 22
           cache: pnpm
 
-      - run: pnpm install --frozen-lockfile
+      - name: Install packages
+        run: |
+          pnpm install --frozen-lockfile
 
-      - run: pnpm --filter @aurex/host build
+      - name: Build products
+        run: |
+          pnpm --filter @aurex/host build
 
       - name: Set credentials
         # if: github.ref == 'refs/heads/main'
         run: |
           echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
-           echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
-           echo "CLOUDFRONT_DISTRIBUTION=${{vars.CLOUDFRONT_DISTRIBUTION}}" >> $GITHUB_ENV
-           echo "BUCKET=s3://${{vars.S3_BUCKET}}/host" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
+          echo "CLOUDFRONT_DISTRIBUTION=${{vars.CLOUDFRONT_DISTRIBUTION}}" >> $GITHUB_ENV
+          echo "BUCKET=s3://${{vars.S3_BUCKET}}/host" >> $GITHUB_ENV
 
       - name: Install dependencies
         # if: steps.cache.outputs.cache-hit != 'true'
         run: |
           pnpm run ci
-
-      - name: Build host app
-        run: |
-          pnpm --filter @aurex/host run build
 
       - name: Upload to S3
         run: |
@@ -56,8 +56,9 @@ jobs:
           aws s3 sync --cache-control 'no-cache' ./dist/ "$BUCKET"
 
       - name: Invalidate Cloudfront cache
-        # aws configure set default.region "$REGION"
         run: |
           aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
           aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
           aws cloudfront create-invalidation --distribution-id "$CLOUDFRONT_DISTRIBUTION" --paths "/host/*"
+
+#  aws cloudfront create-invalidation --distribution-id "$CLOUDFRONT_DISTRIBUTION" --paths "/*"

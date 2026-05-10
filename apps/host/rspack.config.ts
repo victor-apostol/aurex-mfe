@@ -101,5 +101,9 @@ export default defineConfig({
     },
     historyApiFallback: true,
   },
-  output: { publicPath: '/' },
+  output: {
+    filename: isDev ? '[name].js' : '[name].[contenthash].js',
+    chunkFilename: isDev ? '[name].js' : '[name].[contenthash].js',
+    publicPath: '/',
+  },
 });

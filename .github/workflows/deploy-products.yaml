@@ -28,9 +28,13 @@ jobs:
           node-version: 22
           cache: pnpm
 
-      - run: pnpm install --frozen-lockfile
+      - name: Install packages
+        run: |
+          pnpm install --frozen-lockfile
 
-      - run: pnpm --filter @aurex/products build
+      - name: Build products
+        run: |
+          pnpm --filter @aurex/products build
 
       - name: Set credentials
         # if: github.ref == 'refs/heads/main'
@@ -45,19 +49,12 @@ jobs:
         run: |
           pnpm run ci
 
-      - name: Build products app
-        run: |
-          pnpm --filter @aurex/products run build
-
       - name: Upload to S3
         run: |
           cd apps/products/
           aws s3 sync --cache-control 'max-age=604800' --exclude index.html --exclude remoteEntry.js ./dist/ "$BUCKET"
           aws s3 sync --cache-control 'no-cache' ./dist/ "$BUCKET"
 
-      - name: Invalidate Cloudfront cache
-        # aws configure set default.region "$REGION"
+      - name: Invalidate CloudFront cache
         run: |
-          aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
-          aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
           aws cloudfront create-invalidation --distribution-id "$CLOUDFRONT_DISTRIBUTION" --paths "/products/*"
