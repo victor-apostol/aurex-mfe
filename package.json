@@ -7,15 +7,15 @@
   "scripts": {
     "dev": "pnpm --filter './apps/*' --parallel dev",
     "dev:host": "pnpm --filter @aurex/host dev",
-    "dev:products": "pnpm --filter  @aurex/products dev",
+    "dev:products": "pnpm --filter @aurex/products dev",
 
-    "build": "pnpm --filter  @aurex/products build && pnpm --filter @aurex/host build",
+    "build": "pnpm --filter @aurex/products build && pnpm --filter @aurex/host build",
     "build:host": "pnpm --filter @aurex/host build",
-    "build:products": "pnpm --filter  @aurex/products build",
+    "build:products": "pnpm --filter @aurex/products build",
     
-    "preview": "pnpm --filter  @aurex/products preview & pnpm --filter @aurex/host preview",
+    "preview": "pnpm --filter @aurex/products preview & pnpm --filter @aurex/host preview",
     "preview:host": "pnpm --filter @aurex/host preview",
-    "preview:products": "pnpm --filter  @aurex/products preview",
+    "preview:products": "pnpm --filter @aurex/products preview",
 
     "serve": "pnpm --filter @aurex/products serve & pnpm --filter @aurex/host serve",
     

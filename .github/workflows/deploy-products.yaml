@@ -3,7 +3,7 @@ name: Deploy Products MFE
 on:
   push:
     branches:
-      - main
+      - ci-test
     paths:
       - 'apps/products/**'
       - 'packages/**'
@@ -30,3 +30,39 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - run: pnpm --filter products build
+
+      - name: Set credentials
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
+          echo "CLOUDFRONT_DISTRIBUTION=${{vars.CLOUDFRONT_DISTRIBUTION}}" >> $GITHUB_ENV
+          echo "BUCKET=s3://${{vars.S3_BUCKET}}/products" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        # if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          cd apps/products/
+          pnpm run ci
+
+      - name: Build products app
+        run: |
+          cd apps/products/
+          pnpm run build
+
+      - name: Upload to S3
+        run: |
+          aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
+          aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" 
+          aws configure set default.region "$REGION"
+          ...
+          cd apps/products/
+          aws s3 sync --cache-control 'max-age=604800' --exclude index.html --exclude remoteEntry.js ./dist/ "$BUCKET"
+          aws s3 sync --cache-control 'no-cache' ./dist/ "$BUCKET"
+
+      - name: Invalidate Cloudfront cache
+        run: |
+          aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
+          aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
+          aws configure set default.region "$REGION"
+          aws cloudfront create-invalidation --distribution-id "$CLOUDFRONT_DISTRIBUTION" --paths "/products/*"

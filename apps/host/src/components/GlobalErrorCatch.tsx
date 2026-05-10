@@ -16,17 +16,12 @@ const GlobalErrorCatchPage = ({ error, onReset }: ErrorPageProps) => {
           <span className="font-serif text-2xl text-[#C9A96E]">!</span>
         </div>
 
-        <p className="text-xs tracking-[0.2em] uppercase text-[#C9A96E] mb-4">
-          Something went wrong
-        </p>
+        <p className="text-xs tracking-[0.2em] uppercase text-[#C9A96E] mb-4">Something went wrong</p>
 
-        <h1 className="font-serif text-4xl font-medium text-[#0D1B2A] mb-4">
-          Unexpected error
-        </h1>
+        <h1 className="font-serif text-4xl font-medium text-[#0D1B2A] mb-4">Unexpected error</h1>
 
         <p className="text-sm text-[#5A6E82] leading-relaxed mb-8">
-          An unexpected error occurred. Please try again or return to the
-          homepage.
+          An unexpected error occurred. Please try again or return to the homepage.
         </p>
 
         {error?.message && (

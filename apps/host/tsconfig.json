@@ -14,7 +14,7 @@
       "@providers/*": ["./src/providers/*"],
       "@config/*": ["./src/config/*"],
       "@utils/*": ["./src/utils/*"],
-      "@federation-internal": ["./src/federation/index.ts"],
+      "@federation-internal": ["./src/federation/index.ts"]
     },
 
     /* modules */
