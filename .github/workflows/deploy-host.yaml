@@ -42,13 +42,11 @@ jobs:
       - name: Install dependencies
         # if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          cd apps/host/
           pnpm run ci
 
       - name: Build host app
         run: |
-          cd apps/host/
-          pnpm run build
+          pnpm --filter @aurex/host run build
 
       - name: Upload to S3
         run: |
