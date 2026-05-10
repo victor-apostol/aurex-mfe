@@ -13,8 +13,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 config({
-  path: `.env.${isDev ? 'dev' : 'production'}`,
+  path: `.env.${isDev ? 'development' : 'production'}`,
 });
+
+console.log('debug PRODUCTS_REMOTE_ENTRY:', process.env.PRODUCTS_REMOTE_ENTRY, process.env.NODE_ENV);
 
 const productsRemoteEntry = process.env.PRODUCTS_REMOTE_ENTRY;
 
