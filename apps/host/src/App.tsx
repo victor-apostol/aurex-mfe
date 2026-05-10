@@ -7,6 +7,7 @@ import RootPageRedirect from '@pages/RootPageRedirect';
 
 import ProtectedRemote from '@components/ProtectedRemote';
 import ProductPageSpinner from '@components/ProductsPageSpinner';
+import ProductRemoteFallback from '@components/RemoteFallbacks/ProductsRemoteFallback';
 
 import AuthenticatedLayout from './layouts/AuthenticatedLayout';
 
@@ -32,7 +33,7 @@ function App() {
             <ProtectedRemote
               remoteComponent={ProductsMfe}
               suspenseFallback={<ProductPageSpinner />}
-              errorFallback={<div>Products module is unavailable.</div>}
+              errorFallback={<ProductRemoteFallback />}
             />
           }
         />

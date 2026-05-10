@@ -40,6 +40,7 @@ const LoginPage = () => {
             <label className="text-xs uppercase tracking-widest text-[#8E9DAD]">Your name</label>
             <input
               type="text"
+              autoFocus
               value={name}
               onChange={(e) => setName(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
