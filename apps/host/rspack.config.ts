@@ -1,7 +1,8 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { config } from 'dotenv';
 import { defineConfig } from '@rspack/cli';
-import { rspack, type SwcLoaderOptions } from '@rspack/core';
+import { DefinePlugin, rspack, type SwcLoaderOptions } from '@rspack/core';
 import { ReactRefreshRspackPlugin } from '@rspack/plugin-react-refresh';
 import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 import pkg from './package.json' with { type: 'json' };
@@ -10,6 +11,12 @@ const isDev = process.env.NODE_ENV === 'development';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+config({
+  path: `.env.${isDev ? 'dev' : 'production'}`,
+});
+
+const productsRemoteEntry = process.env.PRODUCTS_REMOTE_ENTRY;
 
 export default defineConfig({
   entry: {
@@ -91,6 +98,9 @@ export default defineConfig({
     }),
     new rspack.HtmlRspackPlugin({
       template: './index.html',
+    }),
+    new DefinePlugin({
+      __PRODUCTS_MFE_ENTRY__: JSON.stringify(productsRemoteEntry),
     }),
     isDev && new ReactRefreshRspackPlugin(),
   ],

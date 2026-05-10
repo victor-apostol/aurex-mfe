@@ -4,6 +4,6 @@ export const RUNTIME_REMOTES = {
   productsMfe: {
     name: 'productsMfe',
     alias: 'productsMfe',
-    entry: 'http://localhost:3001/mf-manifest.json',
+    entry: __PRODUCTS_MFE_ENTRY__,
   },
 } as const satisfies Record<RemoteName, RemoteConfig>;
