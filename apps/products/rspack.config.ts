@@ -5,6 +5,7 @@ import { rspack, type SwcLoaderOptions } from '@rspack/core';
 import { ReactRefreshRspackPlugin } from '@rspack/plugin-react-refresh';
 import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 import pkg from './package.json' with { type: 'json' };
+import authPkg from '../../packages/auth/package.json' with { type: 'json' };
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -69,23 +70,19 @@ export default defineConfig({
       shared: {
         react: {
           singleton: true,
-          eager: false,
           requiredVersion: pkg.dependencies['react'],
         },
         'react-dom': {
           singleton: true,
-          eager: false,
           requiredVersion: pkg.dependencies['react-dom'],
         },
         'react-router-dom': {
           singleton: true,
-          eager: false,
           requiredVersion: pkg.dependencies['react-router-dom'],
         },
         '@aurex/auth': {
           singleton: true,
-          requiredVersion: pkg.dependencies['@aurex/auth'],
-          eager: false,
+          requiredVersion: authPkg.version,
         },
       },
     }),

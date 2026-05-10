@@ -8,15 +8,15 @@ const Header = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleLogout = () => {
-    logoutUser();
+  const handleLogout = async () => {
+    await logoutUser();
     navigate('/login');
   };
 
   return (
     <header className="bg-[#0D1B2A] border-b border-[#C9A96E]/20">
-      <div className="px-6 h-16 flex items-center justify-between cursor-pointer">
-        <div onClick={() => navigate('/products')} className="flex items-center gap-3">
+      <div className="px-6 h-16 flex items-center justify-between">
+        <div onClick={() => navigate('/products')} className="flex items-center gap-3 cursor-pointer">
           <div className="w-8 h-8 rounded-full border border-[#C9A96E] flex items-center justify-center text-[#C9A96E] text-sm shrink-0">
             A
           </div>
