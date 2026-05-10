@@ -1,11 +1,9 @@
 name: CI
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-      # - develop
-  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -35,6 +33,12 @@ jobs:
 
       - name: Typecheck
         run: pnpm typecheck
+
+      # - name: Install Playwright browsers
+      #   run: pnpm exec playwright install --with-deps
+
+      # - name: E2E tests
+      #   run: pnpm test:e2e
 
       - name: Build
         run: pnpm build
