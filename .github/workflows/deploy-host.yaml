@@ -16,6 +16,9 @@ jobs:
   deploy-host:
     runs-on: ubuntu-latest
 
+    env:
+      PRODUCTS_REMOTE_ENTRY: ${{ vars.PRODUCTS_REMOTE_ENTRY }}
+
     steps:
       - uses: actions/checkout@v4
 
