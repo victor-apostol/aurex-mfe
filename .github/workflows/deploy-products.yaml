@@ -3,7 +3,7 @@ name: Deploy Products MFE
 on:
   push:
     branches:
-      - ci-test
+      - main
     paths:
       - 'apps/products/**'
       - 'packages/**'
