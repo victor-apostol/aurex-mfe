@@ -30,10 +30,10 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm --filter host build
+      - run: pnpm --filter @aurex/host build
 
       - name: Set credentials
-        if: github.ref == 'refs/heads/main'
+        # if: github.ref == 'refs/heads/main'
         run: |
           echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
            echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
@@ -51,17 +51,13 @@ jobs:
 
       - name: Upload to S3
         run: |
-          aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
-          aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" 
-          aws configure set default.region "$REGION"
-          ...
           cd apps/host/
           aws s3 sync --cache-control 'max-age=604800' --exclude index.html --exclude remoteEntry.js ./dist/ "$BUCKET"
           aws s3 sync --cache-control 'no-cache' ./dist/ "$BUCKET"
 
       - name: Invalidate Cloudfront cache
+        # aws configure set default.region "$REGION"
         run: |
           aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
           aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
-          aws configure set default.region "$REGION"
           aws cloudfront create-invalidation --distribution-id "$CLOUDFRONT_DISTRIBUTION" --paths "/host/*"
