@@ -1,0 +1,42 @@
+{
+  "name": "aurex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter './apps/*' --parallel dev",
+    "dev:host": "pnpm --filter @aurex/host dev",
+    "dev:products": "pnpm --filter  @aurex/products dev",
+
+    "build": "pnpm --filter  @aurex/products build && pnpm --filter @aurex/host build",
+    "build:host": "pnpm --filter @aurex/host build",
+    "build:products": "pnpm --filter  @aurex/products build",
+    
+    "preview": "pnpm --filter  @aurex/products preview & pnpm --filter @aurex/host preview",
+    "preview:host": "pnpm --filter @aurex/host preview",
+    "preview:products": "pnpm --filter  @aurex/products preview",
+
+    "serve": "pnpm --filter @aurex/products serve & pnpm --filter @aurex/host serve",
+    
+    "lint": "pnpm --filter './apps/*' lint",
+    "lint:fix": "pnpm --filter './apps/*' lint -- --fix",
+    "format": "prettier --write \"apps/**/*.{ts,tsx,css,json}\"",
+    "format:check": "prettier --check \"apps/**/*.{ts,tsx,css,json}\"",
+    "typecheck": "pnpm --filter './apps/*' --parallel typecheck",
+    
+    "ci": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": ">=22.10.0",
+    "pnpm": ">=10.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0",
+    "typescript": "^5.9.0"
+  }
+}

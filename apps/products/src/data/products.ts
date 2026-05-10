@@ -1,0 +1,148 @@
+import { type Product } from '@models/product';
+
+export const mockProducts: Array<Product> = [
+  {
+    id: 1,
+    category: 'card',
+    categoryLabel: 'Cards',
+    name: 'Aurex Infinite',
+    tag: 'Premium',
+    description: 'Our flagship metal card with unlimited cashback and global concierge service.',
+    stats: [
+      { label: 'Cashback', value: '2.5', unit: '%' },
+      { label: 'Annual fee', value: '€480', unit: '/yr' },
+    ],
+    features: [
+      'Metal card, priority courier delivery',
+      'Airport lounge access in 1400+ lounges',
+      'Concierge 24/7',
+      'No FX fees worldwide',
+    ],
+  },
+  {
+    id: 2,
+    category: 'card',
+    categoryLabel: 'Cards',
+    name: 'Aurex Everyday',
+    tag: null,
+    description: 'Zero annual fee card with generous cashback on daily spending categories.',
+    stats: [
+      { label: 'Cashback', value: '1.2', unit: '%' },
+      { label: 'Annual fee', value: '€0', unit: '/yr' },
+    ],
+    features: [
+      '2% back on groceries & transit',
+      'Contactless & Apple Pay ready',
+      'Free card replacement',
+      'Up to 3 supplementary cards',
+    ],
+  },
+  {
+    id: 3,
+    category: 'card',
+    categoryLabel: 'Cards',
+    name: 'Aurex Business',
+    tag: null,
+    description: 'Smart expense management with real-time reporting and team spending controls.',
+    stats: [
+      { label: 'Credit limit', value: '€50K', unit: '' },
+      { label: 'Cards/team', value: '20', unit: '' },
+    ],
+    features: [
+      'Dedicated business manager',
+      'Integrated expense reporting',
+      'VAT recovery assistance',
+      'Custom spending limits per card',
+    ],
+  },
+  {
+    id: 4,
+    category: 'deposit',
+    categoryLabel: 'Deposits',
+    name: 'Fixed Horizon',
+    tag: 'Best rate',
+    description: 'Lock in a competitive rate for 12 or 24 months. Capital guaranteed.',
+    stats: [
+      { label: 'APY', value: '4.85', unit: '%' },
+      { label: 'Min. amount', value: '€5K', unit: '' },
+    ],
+    features: [
+      'Term: 12 or 24 months',
+      'FSCS protected up to €100K',
+      'Interest paid at maturity',
+      'Early exit at 30-day penalty only',
+    ],
+  },
+  {
+    id: 5,
+    category: 'deposit',
+    categoryLabel: 'Deposits',
+    name: 'Flex Saver',
+    tag: null,
+    description: 'An instant-access savings account that grows with your balance tier.',
+    stats: [
+      { label: 'APY up to', value: '3.50', unit: '%' },
+      { label: 'Min. amount', value: '€100', unit: '' },
+    ],
+    features: [
+      'Instant withdrawals, no penalty',
+      'Tiered rate — more earns more',
+      'Automatic monthly interest',
+      'No max balance cap',
+    ],
+  },
+  {
+    id: 6,
+    category: 'deposit',
+    categoryLabel: 'Deposits',
+    name: "Children's Future Fund",
+    tag: null,
+    description: 'A tax-efficient long-term savings account for the next generation.',
+    stats: [
+      { label: 'APY', value: '3.80', unit: '%' },
+      { label: 'Min. amount', value: '€50', unit: '' },
+    ],
+    features: [
+      'Available until child turns 18',
+      'Gift contributions from family',
+      'Tax-free growth allowance',
+      'Auto-invest into Aurex funds',
+    ],
+  },
+  {
+    id: 7,
+    category: 'credit',
+    categoryLabel: 'Credit',
+    name: 'Aurex Personal Loan',
+    tag: null,
+    description: 'Fixed-rate personal financing from €1,000 to €50,000 with same-day decisions.',
+    stats: [
+      { label: 'From', value: '6.9', unit: '% APR' },
+      { label: 'Max amount', value: '€50K', unit: '' },
+    ],
+    features: [
+      'Terms: 12 – 84 months',
+      'No early repayment fee',
+      'Same-day decision, next-day funds',
+      'Optional payment holiday',
+    ],
+  },
+  {
+    id: 8,
+    category: 'credit',
+    categoryLabel: 'Credit',
+    name: 'Home Equity Line',
+    tag: null,
+    description: 'Unlock liquidity secured against your property at a preferential rate.',
+    stats: [
+      { label: 'From', value: '4.2', unit: '% APR' },
+      { label: 'Up to', value: '€500K', unit: '' },
+    ],
+    features: [
+      'Draw down as needed, repay flexibly',
+      'LTV up to 80% of property value',
+      'No arrangement fee for Aurex clients',
+      '5-year revolving facility',
+    ],
+  },
+];

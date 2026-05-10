@@ -1,0 +1,26 @@
+{
+  "name": "@aurex/auth",
+  "version": "1.0.0",
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "peerDependencies": {
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "react": "^18.3.1",
+    "@types/react": "^18.3.28",
+    "typescript": "^5.9.3"
+  },
+  "keywords": []
+}

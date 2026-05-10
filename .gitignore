@@ -1,0 +1,8 @@
+node_modules
+
+requirements.md
+notes.txt
+
+.env
+.env.*
+!.env.example

@@ -1,0 +1,25 @@
+# Local
+.DS_Store
+*.local
+*.log*
+
+# Dist
+node_modules
+dist/
+
+# Profile
+.rspack-profile-*/
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+.env
+.env.*
+!.env.example
+
+@mf-types/
+**/@mf-types/
+**/*mf-types/
+**/.mf/
