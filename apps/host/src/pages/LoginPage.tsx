@@ -53,9 +53,13 @@ const LoginPage = () => {
             onClick={() => handleLogin()}
             onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
             disabled={isSignInButtonDisabled}
-            className="w-full py-3 bg-[#0D1B2A] hover:bg-[#243B55] disabled:opacity-40 disabled:cursor-not-allowed text-[#C9A96E] rounded-xl text-sm font-medium tracking-widest transition-colors cursor-pointer"
+            className="flex items-center justify-center w-full py-3 bg-[#0D1B2A] hover:bg-[#243B55] disabled:opacity-40 disabled:cursor-not-allowed text-[#C9A96E] rounded-xl text-sm font-medium tracking-widest transition-colors cursor-pointer"
           >
-            Sign in →
+            {isPending ? (
+              <div className="w-4 h-4 rounded-full border-2 border-stone-200 border-t-yellow-600 animate-spin" />
+            ) : (
+              'Sign in →'
+            )}
           </button>
         </div>
       </div>

@@ -1,1 +1,1 @@
-declare const __PRODUCTS_MFE_ENTRY__: string;
+declare const __PRODUCTS_REMOTE_ENTRY__: string;

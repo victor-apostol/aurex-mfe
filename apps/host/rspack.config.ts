@@ -17,8 +17,6 @@ config({
   path: `.env.${isDev ? 'development' : 'production'}`,
 });
 
-console.log('debug PRODUCTS_REMOTE_ENTRY:', process.env.PRODUCTS_REMOTE_ENTRY, process.env.NODE_ENV);
-
 const productsRemoteEntry = process.env.PRODUCTS_REMOTE_ENTRY;
 
 export default defineConfig({
@@ -99,7 +97,7 @@ export default defineConfig({
       template: './index.html',
     }),
     new DefinePlugin({
-      __PRODUCTS_MFE_ENTRY__: JSON.stringify(productsRemoteEntry),
+      __PRODUCTS_REMOTE_ENTRY__: JSON.stringify(productsRemoteEntry),
     }),
     isDev && new ReactRefreshRspackPlugin(),
   ],

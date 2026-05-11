@@ -5,7 +5,7 @@ import LoginPage from '@pages/LoginPage';
 import NotFoundPage from '@pages/NotFoundPage';
 import RootPageRedirect from '@pages/RootPageRedirect';
 
-import ProtectedRemote from '@components/ProtectedRemote';
+import RemoteFallbackWrapper from '@components/RemoteFallbackWrapper';
 import ProductPageSpinner from '@components/ProductsPageSpinner';
 import ProductRemoteFallback from '@components/RemoteFallbacks/ProductsRemoteFallback';
 
@@ -30,7 +30,7 @@ function App() {
         <Route
           path="/products/*"
           element={
-            <ProtectedRemote
+            <RemoteFallbackWrapper
               remoteComponent={ProductsMfe}
               suspenseFallback={<ProductPageSpinner />}
               errorFallback={<ProductRemoteFallback />}

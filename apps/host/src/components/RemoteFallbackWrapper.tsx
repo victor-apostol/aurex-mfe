@@ -9,7 +9,7 @@ type Props = {
   redirectPath?: string;
 };
 
-const ProtectedRemote = ({ remoteComponent: RemoteComponent, suspenseFallback, errorFallback }: Props) => {
+const RemoteFallbackWrapper = ({ remoteComponent: RemoteComponent, suspenseFallback, errorFallback }: Props) => {
   return (
     <ErrorBoundary fallback={errorFallback}>
       <Suspense fallback={suspenseFallback}>
@@ -19,4 +19,4 @@ const ProtectedRemote = ({ remoteComponent: RemoteComponent, suspenseFallback, e
   );
 };
 
-export default ProtectedRemote;
+export default RemoteFallbackWrapper;
